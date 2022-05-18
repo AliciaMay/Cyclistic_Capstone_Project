@@ -187,7 +187,7 @@ ORDER BY member_casual
 
 The chart clearly shows casual riders use the bikes for approximately 30 minutes and members use them for 15 minutes or less. 
   
-## Data Analyzation Using R Programing Language
+## Data Analyzation Using R
 
 I began by loading the packages that I would be using to analyze and visualize the data then uploaded all files.
   
