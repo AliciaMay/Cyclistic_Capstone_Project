@@ -1,5 +1,4 @@
 # Cyclistic Capstone Project 
-### Google Data Analytics Certificate
 
 As the Google Data Analyst course comes to an end, I am assigned a capstone project to enhance my Excel, SQL, Tableau, and R skills. These are the tools I will be using throughout the project to become more proficient for a future in Data Analytics. 
 Cyclistic, a Chicago based bike-share company would like to increase their profitability by converting casual riders into annual members. As a junior data analyst, I have been assigned the task of determining how casual riders and annual members use Cyclistic bikes differently. 
@@ -62,7 +61,7 @@ The .csv files were saved as individual excel sheets so that I could do some ini
    </table>
 </div>
 
-*	I created Pivot Tables and used Pivot Wizard to collect some beginning insightful data comparing casual riders vs members. As we see in the charts below, there is a large number of casual riders that can be targeted during promotional events. Their bike preference is also the classic bike followed by electric bikes. 
+* I created Pivot Tables and used Pivot Wizard to collect some beginning insightful data comparing casual riders vs members. As we see in the charts below, there is a large number of casual riders that can be targeted during promotional events. Their bike preference is also the classic bike followed by electric bikes. 
 
 <div id="image-table">
   <div align="center">
@@ -136,7 +135,7 @@ GROUP BY member_casual
    </table>
 </div>
 
-We can see that casual members are more likely to take longer rides than annual members. This leads me to believe that casual members use the bikes for leisure vs the members who probably use the bikes to get to work.
+We can see that casual riders are more likely to take longer rides than members. This leads me to believe that casual riders use the bikes for leisure vs the members who probably use the bikes to get to and from work.
 
 I then followed up with the next SQL statement to compare the number of trips per day by casual and member riders.
 
@@ -223,7 +222,7 @@ summary(all_trips)
 ```
 
 The columns for date, month, day, year, day_of_week and a column for the calculation of ride_length was then added to the data frame. Ride length calculations with negative duration were also removed.
-I achieved this by using the following code:
+I achieved this by running the following code:
 ```
 all_trips$date <- as.Date(all_trips$started_at)
 all_trips$month <- format(as.Date(all_trips$date),"%m")
@@ -252,7 +251,7 @@ Let’s preview what that section of the data frame looks like now.
    </table>
 </div>
 
-To gain some initial insights I ran a summary of the ride length and also used the following code to compare the ride length of member cyclist to casual cyclist. I attached a snippet of the results.
+To gain some initial insights I ran a summary of the ride length and also used the following code to compare the ride length of member riders to casual riders. I attached a snippet of the results.
   
 ```
 summary(all_trips_V2$ride_length)
@@ -299,9 +298,9 @@ all_trips_V2 %>%
    </table>
 </div>
 
-The data shows casual cyclist prefer to ride during the spring and summer months, with the most rides occurring in the month of July. Member cyclist also increased their rides in the summer months but tend to continue to ride throughout the year more than casual cyclist.
+The data shows casual riders prefer to ride during the spring and summer months, with the most rides occurring in the month of July. Member riders also increased their rides in the summer months but tend to continue to ride throughout the year more than casual riders.
 
-I was interested to analyze data on the most frequently used start and end stations by casual and member cyclists. I began by creating a data frame to represent the data for members (dfmem) and casual (dfcas) cyclists separately. I started with member cyclists by using the following code.
+I was interested to analyze data on the most frequently used start and end stations by casual and member riders. I began by creating a data frame to represent the data for members (dfmem) and casual (dfcas) riders separately. I started with member riders by running the following code.
 
 ```
 dfmem <- all_trips_V2 %>% 
@@ -319,7 +318,7 @@ dfcas$start_station_name <- sub("^$", "missing_data", dfcas$start_station_name)
 dfcas$end_station_name <- sub("^$", "missing_data", dfcas$end_station_name)
 ```
 
-I was then able to run the following code to gather the data I was looking for. I did the same thing for member cyclist and casual cyclist. As we can see member and casual cyclists do not share common frequently used starting or ending stations. By looking at the names of the data collected on casual cyclists, they appear to be more of a tourist area.
+I was then able to run the following code to gather the data I was looking for. I did the same thing for member riders and casual riders. As we can see member and casual riders do not share common frequently used starting or ending stations. By looking at the names of the data collected on casual riders, they appear to be areas of leisure and entertainment.
   
 
 <div id="image-table">
@@ -344,13 +343,13 @@ I was then able to run the following code to gather the data I was looking for. 
    </table>
 </div>
   
-I then looked at the most used routes by both member and casual cyclists. I created a new column called “traveled_routes” by using the paste function to concatenate the start and end station names also separating them by using "--"
+I then looked at the most used routes by both member and casual riders. I created a new column called “traveled_routes” by using the paste function to concatenate the start and end station names also separating them by using "--"
   
 ```
 dfmem$traveled_routes <- paste(dfmem$start_station_name, dfmem$end_station_name, sep = "--")
 ```
 
-Below we can see the code I ran as well as the data formulated for both member and casual cyclists. Casual cyclists tend to start and end at the same stations compared to member cyclists who start and end at different stations.
+Below we can see the code I ran as well as the data populated for both member and casual riders. Casual riders tend to start and end at the same stations compared to member riders who start and end at different stations.
                          
 <div id="image-table">
   <div align="center">
@@ -382,9 +381,9 @@ I created a new data source by uploading an excel workbook that contained the mo
    </table>
 </div>
 
-*	Casual cyclists make up 44% of the number of rides recorded which provides for an opportunity to convert casual cyclists to members.
-*	Casual cyclists ride duration average is twice that of members.
-*	Both casual and member cyclists prefer classic bike types. There were no member cyclists who chose to ride a docked bike.
+*	Casual riders make up 44% of the number of rides recorded which provides for an opportunity to convert casual riders to members.
+*	Casual riders ride duration average is twice that of members.
+*	Both casual and member riders prefer classic bike types. There were no member riders who chose to ride a docked bike.
 
 <div id="image-table">
   <div align="center">
@@ -398,8 +397,8 @@ I created a new data source by uploading an excel workbook that contained the mo
 </div>
   
 *	Casual and member ridership begins to increase during the month of February.
-*	Both casual and member cyclists tend to ride more during the summer months with July being the busiest for casual cyclists while August and September are equally the busiest time for member cyclists.
-*	Casual cyclists tend to ride more on the weekends compared to member cyclists who ride more during the weekday.
+*	Both casual and member riders tend to ride more during the summer months with July being the busiest for casual riders while August and September are equally the busiest time for member riders.
+*	Casual riders tend to ride more on the weekends compared to member riders who ride more during the weekday.
 
 <div id="image-table">
   <div align="center">
@@ -423,7 +422,7 @@ I created a new data source by uploading an excel workbook that contained the mo
    </table>
 </div>
   
-*	Both casual and member cyclist enjoy riding during the afternoon into the evening. The most rides for both occurring during the hours of 4pm to 6pm.
+*	Both casual and member riders enjoy riding during the afternoon into the evening. The most rides for both occurring during the hours of 4pm to 6pm.
   
 <div id="image-table">
   <div align="center">
@@ -447,8 +446,8 @@ I created a new data source by uploading an excel workbook that contained the mo
    </table>
 </div>
   
-*	Casual and member cyclists tend to ride more during the summer and fall months.
-*	Member cyclists ride more than casual cyclists during the winter months.
+*	Casual and member riders tend to ride more during the summer and fall months.
+*	Members ride more than casual riders during the winter months.
 
 Here is a look of the dashboard as a whole:
 
@@ -467,17 +466,17 @@ Here is a look of the dashboard as a whole:
 
 After analyzing I have reached the following conclusion:
   
-**Casual cyclists**
+**Casual riders**
 *	Ride an average duration of 30 minutes.
 *	Prefer classic bikes
 *	Begin to increase their ridership in February and peak in July
-*	Cycle more on the weekends than weekdays
-*	Enjoy cycling in the afternoon into the evening
-*	Enjoy the cycling in the summer and fall and cycle least in the winter
+*	Ride more on the weekends than weekdays
+*	Enjoy riding in the afternoon into the evening
+*	Enjoy the riding in the summer and fall and cycle least in the winter
 *	Most visited start and end station is Streeter Dr & Grand Ave
   
 Here are my top 3 recommendations based on the above key findings:
   
-1.	Promotions should begin in February when the uptick in casual cyclist begins and target classic bikes.
+1.	Promotions should begin in February when the uptick in casual riders begins and target classic bikes.
 2.	New membership promotions should include discounts on weekends or evenings. A discounted seasonal membership should also be promoted.
 3.	New membership promotional advertisement should be placed at Streeter Dr & Grand Ave or even a weekend drive to register new members.
