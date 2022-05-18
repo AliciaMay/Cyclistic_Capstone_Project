@@ -1,7 +1,6 @@
 ## Load packages
 library(tidyverse)
 library(lubridate)
-library(geodist)
 library(ggplot2)
 
 ## Set working directory
