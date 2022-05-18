@@ -1,4 +1,6 @@
-# Cyclistic Capstone Project 
+<img src="https://user-images.githubusercontent.com/105527562/168933795-591ead1f-d774-4b4a-a75d-1ce1b6342992.png" width="250"/>
+
+# Cyclistic Capstone Project
 
 As the Google Data Analyst course comes to an end, I am assigned a capstone project to enhance my Excel, SQL, Tableau, and R skills. These are the tools I will be using throughout the project to become more proficient for a future in Data Analytics. 
 Cyclistic, a Chicago based bike-share company would like to increase their profitability by converting casual riders into annual members. As a junior data analyst, I have been assigned the task of determining how casual riders and annual members use Cyclistic bikes differently. 
