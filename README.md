@@ -1,4 +1,6 @@
-<img src="https://user-images.githubusercontent.com/105527562/168933795-591ead1f-d774-4b4a-a75d-1ce1b6342992.png" width="250"/>
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/105527562/168933795-591ead1f-d774-4b4a-a75d-1ce1b6342992.png" width="250"/>
+</div>
 
 # Cyclistic Capstone Project
 
@@ -15,7 +17,7 @@ These three given questions guided my analysis process:
 3.	How can Cyclistic use digital media to influence casual riders to become members?
 
 ## PREPARE
-I downloaded and extracted the ZIP files of the previous 12 months of Cyclistic trip data and saved them to my computer as .csv files. At the same time, I created a subfolder to save original copies of the data. The ZIP files that I downloaded are shown below. 
+I downloaded and extracted the ZIP files of the previous 12 months of Cyclistic trip data and saved them to my computer as .csv files. At the same time, I created a subfolder to save original copies of the data.
 
 
 <div id="image-table">
@@ -47,7 +49,7 @@ The data layout within each file contained 13 columns labeled as follows:
 ## PROCESS
 ### Initial Data Verification in Excel
 
-The .csv files were saved as individual excel sheets so that I could do some initial cleaning and become familiar with the data and its organization. 
+I opened the individual .csv files in excel in order to do some initial cleaning and become familiar with the data and its organization. 
 *	Checked for duplicates, spell check, formatting and outliers.
 *	Created a column named “day_of_week” to identify the day of the week of each ride.
 *	Created a column named “ride_length” which calculated the length of each ride. After checking the filter, there were negative numbers that were found and showed a data entry error. A total of 143 rows were found to have this error and were removed from the total data.
