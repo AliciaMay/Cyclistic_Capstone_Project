@@ -49,8 +49,8 @@ The data layout within each file contained 13 columns labeled as follows:
 ## PROCESS
 ### Initial Data Verification in Excel
 
-I opened the individual .csv files in excel in order to do some initial cleaning and become familiar with the data and its organization. 
-*	Checked for duplicates, spell check, formatting and outliers.
+The .csv files were saved as individual excel sheets so that I could do some initial cleaning and become familiar with the data and its organization. 
+*	Checked for duplicates, spell check, formatting, and outliers.
 *	Created a column named “day_of_week” to identify the day of the week of each ride.
 *	Created a column named “ride_length” which calculated the length of each ride. After checking the filter, there were negative numbers that were found and showed a data entry error. A total of 143 rows were found to have this error and were removed from the total data.
 
@@ -65,17 +65,17 @@ I opened the individual .csv files in excel in order to do some initial cleaning
    </table>
 </div>
 
-* I created Pivot Tables and used Pivot Wizard to collect some beginning insightful data comparing casual riders vs members. As we see in the charts below, there is a large number of casual riders that can be targeted during promotional events. Their bike preference is also the classic bike followed by electric bikes. 
+Let’s look at some insightful data comparing casual riders vs members by creating Pivot Tables and using the Pivot Wizard to combine the data needed. As we see in the charts below, Cyclistic has access to a large group of casual riders that can be targeted during promotional events in order to increase their profits. Classic and electric bikes were the most used by both casual riders and members. 
 
 <div id="image-table">
   <div align="center">
     <table>
 	    <tr>
     	   <td style="padding:10px">
-        	   <img src="https://user-images.githubusercontent.com/105527562/168899948-e68ee991-ca0b-4421-9b7b-b80591e648e2.png" width="400"/>
+        	   <img src="https://user-images.githubusercontent.com/105527562/169669383-61a3b75e-1d06-4118-b664-94382472d29c.png" width="400"/>
       	   </td>
             <td style="padding:10px">
-            	<img src="https://user-images.githubusercontent.com/105527562/168900029-4cc3235c-79e0-4688-ba0c-dd93239f149e.png" width="420"/>
+            	<img src="https://user-images.githubusercontent.com/105527562/169669396-e3281a6b-d811-42b4-ba7d-191c880a0971.png" width="420"/>
            </td>
        </tr>
    </table>
@@ -85,7 +85,7 @@ I opened the individual .csv files in excel in order to do some initial cleaning
 ## ANALYZE
 ### Data Analyzation Using BigQuery and SQL
 
-I began by uploading all 12 .csv files into BigQuery then used the SELECT, FROM, UNION DISTINCT statement to create a table appending all the data in the files and labeled it all_trips. Below is a snippet of the SQL I used and a look at the preview of the table.
+All 12 .csv files were uploaded into BigQuery then I used the SELECT, FROM, UNION DISTINCT statement to create one large table appending all the data and then labeled it all_trips. Let’s take a peek at the results.
 
 ```
 SELECT  *
@@ -118,7 +118,7 @@ UNION DISTINCT
    </table>
 </div>  
 
-I wanted to begin by looking at the average ride trip by member. I used the following SQL statement and the results are shown.
+By analyzing the average ride trip of casual riders vs members, we can see that casual riders are more likely to take longer rides than annual members. This leads to the conclusion that casual riders use bikes primarily for leisure whilst members use bikes as a method of transportation.
   
 ```
 SELECT  
@@ -139,9 +139,8 @@ GROUP BY member_casual
    </table>
 </div>
 
-We can see that casual riders are more likely to take longer rides than members. This leads me to believe that casual riders use the bikes for leisure vs the members who probably use the bikes to get to and from work.
-
-I then followed up with the next SQL statement to compare the number of trips per day by casual and member riders.
+Let’s continue our journey and compare the number of trips per day by casual vs member riders. 
+We can assume from the data that casual riders bike more on weekends. On the other hand, members bike more on weekdays.
 
 ```
 SELECT  
@@ -164,9 +163,8 @@ ORDER BY member_casual
    </table>
 </div>
 
-By analyzing the chart, we can see that casual riders tend to ride more on the weekends and members ride more during the weekdays.
-
-I further wanted to analyze the length of rides by casual riders and members. I used the following SQL statement to aggregate the data and created a chart to visualize the results.
+I also wanted to investigate the length of rides taken by members and casual riders. The data was aggregated and a chart was created to display the results. 
+Casual riders use the bikes for about 30 minutes, whereas members utilize them for 15 minutes or less, according to the graph.
 
 ```
 SELECT  
@@ -193,7 +191,7 @@ The chart clearly shows casual riders use the bikes for approximately 30 minutes
   
 ## Data Analyzation Using R
 
-I began by loading the packages that I would be using to analyze and visualize the data then uploaded all files.
+The initial step is to load the packages that will be used to analyze and visualize the data, followed by uploading all the files.
   
 ```
 library(tidyverse)
@@ -215,7 +213,7 @@ df2 <- read.csv("202202-divvy-tripdata.csv")
 df3 <- read.csv("202203-divvy-tripdata.csv")
 ```
   
-I followed up with using the bind_rows function to make one single data frame to analyze. Then inspected the results by checking the columns, rows and a summary of the data.
+The bind_rows function was used to make one large single data frame to analyze. Then inspection of the results was performed by checking the columns, rows, and a summary of the data.
   
 ```
 all_trips <- bind_rows(df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11,df12)
@@ -224,9 +222,9 @@ colnames(all_trips)
 nrow(all_trips)
 summary(all_trips)
 ```
-
-The columns for date, month, day, year, day_of_week and a column for the calculation of ride_length was then added to the data frame. Ride length calculations with negative duration were also removed.
-I achieved this by running the following code:
+	     
+The columns for date, month, day, year, day_of_week, and a column for the calculation of ride_length were then added to the data frame. When the findings were examined, it was discovered that some values resulted in negative time duration. This would have an impact on any calculations and hence were eliminated.
+	     
 ```
 all_trips$date <- as.Date(all_trips$started_at)
 all_trips$month <- format(as.Date(all_trips$date),"%m")
@@ -255,7 +253,7 @@ Let’s preview what that section of the data frame looks like now.
    </table>
 </div>
 
-To gain some initial insights I ran a summary of the ride length and also used the following code to compare the ride length of member riders to casual riders. I attached a snippet of the results.
+To gain some preliminary insights, the data was aggregated to compare the ride length of member to casual riders.
   
 ```
 summary(all_trips_V2$ride_length)
@@ -276,7 +274,7 @@ aggregate(all_trips_V2$ride_length~all_trips_V2$member_casual,FUN = min)
    </table>
 </div>
 
-After conducting a few other aggregations, I moved on to analyzing and comparing the total rides by month through visualization. I ran the following code to produce the chart below.
+After conducting a few other aggregations, I moved on to visually analyzing and comparing total rides by month.
   
 ```
 all_trips_V2 %>% 
@@ -302,9 +300,9 @@ all_trips_V2 %>%
    </table>
 </div>
 
-The data shows casual riders prefer to ride during the spring and summer months, with the most rides occurring in the month of July. Member riders also increased their rides in the summer months but tend to continue to ride throughout the year more than casual riders.
+The visualization shows casual riders prefer to ride during the spring and summer months, with the most rides occurring in the month of July. Member riders also increased their rides in the summer months but tend to continue to ride throughout the year more often than casual riders.
 
-I was interested to analyze data on the most frequently used start and end stations by casual and member riders. I began by creating a data frame to represent the data for members (dfmem) and casual (dfcas) riders separately. I started with member riders by running the following code.
+Now we can look at the most frequently used start and end stations by casual and member riders. I began by creating a data frame to represent the data for member (dfmem) and casual (dfcas) riders separately. 
 
 ```
 dfmem <- all_trips_V2 %>% 
@@ -313,7 +311,7 @@ dfcas <- all_trips_V2 %>%
   filter(member_casual=="casual")
 ```
   
-There were several rows missing data that made up 7% of the data, but instead of deleting the data I named the cells "missing_data". I believe it is important to find the cause of the missing data and should be analyzed further.
+There were several cell values missing data, accounting for 7% of the total data, but instead of deleting the data, I named the cells “missing data”. It is critical to identify the source of the missing data and that it should be investigated further.
   
 ```
 dfmem$start_station_name <- sub("^$", "missing_data", dfmem$start_station_name)
@@ -322,8 +320,7 @@ dfcas$start_station_name <- sub("^$", "missing_data", dfcas$start_station_name)
 dfcas$end_station_name <- sub("^$", "missing_data", dfcas$end_station_name)
 ```
 
-I was then able to run the following code to gather the data I was looking for. I did the same thing for member riders and casual riders. As we can see member and casual riders do not share common frequently used starting or ending stations. By looking at the names of the data collected on casual riders, they appear to be areas of leisure and entertainment.
-  
+Analyzing the results, we can see member and casual riders do not share common frequently used starting or ending stations. There is no discernible difference in how members use stations. Casual riders, on the other hand, use Streeter Dr & Grand Ave station twice as frequently as any other.   
 
 <div id="image-table">
   <div align="center">
@@ -347,13 +344,13 @@ I was then able to run the following code to gather the data I was looking for. 
    </table>
 </div>
   
-I then looked at the most used routes by both member and casual riders. I created a new column called “traveled_routes” by using the paste function to concatenate the start and end station names also separating them by using "--"
+A new column called “traveled_routes” was created by using the paste function to concatenate the start and end station names also separating them by using "--". This was done in order to determine which route was the most popular among the riders.
   
 ```
 dfmem$traveled_routes <- paste(dfmem$start_station_name, dfmem$end_station_name, sep = "--")
 ```
 
-Below we can see the code I ran as well as the data populated for both member and casual riders. Casual riders tend to start and end at the same stations compared to member riders who start and end at different stations.
+When compared to member riders who start and end at different stations, casual riders tend to start and end at the same stations. We can also see that some of the member routes are used in reverse of each other. This could imply that member riders are traveling from one station to another and then returning. 
                          
 <div id="image-table">
   <div align="center">
@@ -372,7 +369,7 @@ Below we can see the code I ran as well as the data populated for both member an
 # SHARE
 ## Data Visualization using Tableau
 
-I created a new data source by uploading an excel workbook that contained the monthly table sheets. Once uploaded, I used the join feature to append all the tables together. I designed the following sheets and listed the key insights.  
+A new data source was created by uploading an excel workbook containing all the monthly table sheets. All the tables were appended together using the join feature. The following sheets were designed in Tableau, and key insights are noted.    
 
 <div id="image-table">
   <div align="center">
@@ -385,9 +382,9 @@ I created a new data source by uploading an excel workbook that contained the mo
    </table>
 </div>
 
-*	Casual riders make up 44% of the number of rides recorded which provides for an opportunity to convert casual riders to members.
-*	Casual riders ride duration average is twice that of members.
-*	Both casual and member riders prefer classic bike types. There were no member riders who chose to ride a docked bike.
+* Casual riders make up 44% of the number of rides recorded which provides an opportunity to convert casual riders to members.
+* Casual riders ride duration average is twice that of members.
+* Both casual and member riders prefer classic bike types. There were no member riders who chose to ride a docked bike.
 
 <div id="image-table">
   <div align="center">
@@ -426,7 +423,8 @@ I created a new data source by uploading an excel workbook that contained the mo
    </table>
 </div>
   
-*	Both casual and member riders enjoy riding during the afternoon into the evening. The most rides for both occurring during the hours of 4pm to 6pm.
+* Both casual and member riders enjoy riding during the afternoon into the evening. Most rides for both occur during the hours of 4pm to 6pm.
+* When compared to casual riders, there is a considerable increase between the hours of 7am and 8am for members.
   
 <div id="image-table">
   <div align="center">
@@ -450,17 +448,17 @@ I created a new data source by uploading an excel workbook that contained the mo
    </table>
 </div>
   
-*	Casual and member riders tend to ride more during the summer and fall months.
-*	Members ride more than casual riders during the winter months.
+* Casual and member riders tend to ride more during the summer and fall months.
+* During the winter, member riders ride more than casual riders.
 
-Here is a look of the dashboard as a whole:
+Here is an overview of the dashboard as a whole:
 
 <div id="image-table">
   <div align="center">
     <table>
 	    <tr>
     	   <td style="padding:10px">
-        	 <img src="https://user-images.githubusercontent.com/105527562/168923801-bd7bd492-1f8f-4943-a80e-cfbabde27c3f.png" width="800"/>
+        	 <img src="https://user-images.githubusercontent.com/105527562/169669860-b3a5c275-a2ca-4346-8a82-9c724fc5bfdc.png" width="800"/>
         </td>
       </tr>
    </table>
@@ -471,16 +469,18 @@ Here is a look of the dashboard as a whole:
 After analyzing I have reached the following conclusion:
   
 **Casual riders**
-*	Ride an average duration of 30 minutes.
-*	Prefer classic bikes
-*	Begin to increase their ridership in February and peak in July
-*	Ride more on the weekends than weekdays
-*	Enjoy riding in the afternoon into the evening
-*	Enjoy the riding in the summer and fall and cycle least in the winter
-*	Most visited start and end station is Streeter Dr & Grand Ave
+* Ride for an average duration of 30 minutes.
+* Prefer classic bikes
+* Begin to increase their ridership in February and peak in July
+* Ride more on the weekends than weekdays
+* Enjoy riding in the afternoon into the evening
+* Enjoy the riding in the summer and fall and ride least in the winter
+* Most visited start and end station is Streeter Dr & Grand Ave
+
   
 Here are my top 3 recommendations based on the above key findings:
   
 1.	Promotions should begin in February when the uptick in casual riders begins and target classic bikes.
 2.	New membership promotions should include discounts on weekends or evenings. A discounted seasonal membership should also be promoted.
-3.	New membership promotional advertisement should be placed at Streeter Dr & Grand Ave or even a weekend drive to register new members.
+3.	New membership promotional advertisements should be placed at Streeter Dr & Grand Ave or even a weekend drive to register new annual members should be held at the location.
+
